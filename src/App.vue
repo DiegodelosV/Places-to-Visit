@@ -5,30 +5,35 @@
     <ul>
       <li v-for="place in placesToVisit" :key="place">
         {{ place }}
+        <button @click="removePlace(place)">Eliminar</button>
       </li>
     </ul>
   </div>
 </template>
- 
+
 <script>
 import PlaceForm from "./components/PlaceForm.vue";
- 
+
 export default {
   components: {
     PlaceForm,
   },
- 
+
   data() {
     return {
       placesToVisit: [],
     };
   },
- 
+
   methods: {
     handleAddPlace(place) {
       if (place && !this.placesToVisit.includes(place)) {
         this.placesToVisit.push(place);
       }
+    },
+
+    removePlace(place) {
+      this.placesToVisit = this.placesToVisit.filter((p) => p !== place);
     },
   },
 };
